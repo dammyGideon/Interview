@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -14,10 +15,10 @@ namespace interview.Migrations
                 name: "UsersEntities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,10 +29,10 @@ namespace interview.Migrations
                 name: "NoteEntities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Note = table.Column<string>(type: "text", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +48,7 @@ namespace interview.Migrations
             migrationBuilder.InsertData(
                 table: "UsersEntities",
                 columns: new[] { "Id", "Email", "Password" },
-                values: new object[] { 1, "ajayegidolas@gmail.com", "$2a$11$U/gKqwE9MgnbwK6v5Vr4keiQmFSoga1mB88uj97lYDh1og2Vk.pZG" });
+                values: new object[] { 1, "ajayegidolas@gmail.com", "$2a$11$JjTg/VGfHAdE6yx3Y/mnaewFexAhQqs9QIG277usBpl4jgx0LEdoe" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_NoteEntities_UserId",

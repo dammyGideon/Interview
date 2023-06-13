@@ -80,3 +80,5 @@ C:\Users\ajaye\Desktop\oyo\interview\obj\Debug\net7.0\refint\interview.dll
 C:\Users\ajaye\Desktop\oyo\interview\obj\Debug\net7.0\interview.pdb
 C:\Users\ajaye\Desktop\oyo\interview\obj\Debug\net7.0\interview.genruntimeconfig.cache
 C:\Users\ajaye\Desktop\oyo\interview\obj\Debug\net7.0\ref\interview.dll
+C:\Users\ajaye\Desktop\oyo\interview\bin\Debug\net7.0\DotNetEnv.dll
+C:\Users\ajaye\Desktop\oyo\interview\bin\Debug\net7.0\Sprache.dll
