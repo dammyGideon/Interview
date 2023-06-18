@@ -1,22 +1,21 @@
-# Stage 1: Build the .NET application
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+# Get sdk
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+WORKDIR /app
 
-WORKDIR /src
-
-COPY interview.csproj .
+#Copy the csproj file and restore any dependencies (via NUGET)
+COPY *.csproj ./
 RUN dotnet restore
 
-COPY . .
-RUN dotnet build -c Release -o /app/build
+#Copy the project files and build our release
 
-# Stage 2: Publish the .NET application
-FROM build AS publish
-RUN dotnet publish -c Release -o /app/publish
+COPY . ./
+RUN dotnet publish -c Release -o out
+#Generate runtime image
 
-# Stage 3: Create the final image
-FROM mcr.microsoft.com/dotnet/runtime:7.0 AS final
-
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
-COPY --from=publish /app/publish .
+EXPOSE 80
+COPY --from=build-env /app/out .
 
 ENTRYPOINT ["dotnet", "interview.dll"]
+

@@ -16,7 +16,7 @@ namespace interview.Services
             context = _context;
             httpContextAccessor = _httpContextAccessor;
         }
-
+// create notes
         public async Task CreateNoteAsync(NoteEntity noteEntity)
         {
             var userId = httpContextAccessor.HttpContext.User.Claims
@@ -30,7 +30,7 @@ namespace interview.Services
              context.NoteEntities.Add(noteEntity);
                 await context.SaveChangesAsync();
         }
-
+// delete single note
         public async Task DeleteNoteAsync(int id)
         {
             var userId = httpContextAccessor.HttpContext.User.Claims
@@ -45,14 +45,14 @@ namespace interview.Services
                 await context.SaveChangesAsync();
             }
         }
-
+// get all Notes
         public async Task<IEnumerable<NoteEntity>> GetAllNotes(){
             var userId = httpContextAccessor.HttpContext.User.Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var notes = await context.NoteEntities.ToListAsync();
             return notes;
         }
-
+// get Note by Id
         public async Task<NoteEntity> GetNoteEntityById(int id)
         {
             var userId = httpContextAccessor.HttpContext.User.Claims
@@ -60,7 +60,7 @@ namespace interview.Services
                 var singleNote = await context.NoteEntities.FirstOrDefaultAsync(note => note.Id == id);
               return singleNote;
         }
-
+//update         
         public async Task UpdateNoteAsync(NoteEntity noteEntity)
         {
             var userId = httpContextAccessor.HttpContext.User.Claims
@@ -70,6 +70,8 @@ namespace interview.Services
 
             if (updateNote != null)
             {
+                updateNote.Note = noteEntity.Note;
+                updateNote.Note = noteEntity.Note;
                 context.NoteEntities.Update(updateNote);
                 await context.SaveChangesAsync();
             }
